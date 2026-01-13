@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="robots" content="index,follow" />
+  <title>DGCLEAR — Limpeza e Instalação de Ar-Condicionado | WhatsApp</title>
+  <meta name="description" content="Limpeza e instalação de ar-condicionado. Atendimento residencial e comercial. Solicite orçamento pelo WhatsApp." />
+  <meta name="theme-color" content="#061a33" />
+
+  <!-- OG para Facebook -->
+  <meta property="og:title" content="DGCLEAR — Limpeza e Instalação de Ar-Condicionado" />
+  <meta property="og:description" content="Solicite orçamento no WhatsApp. Atendimento residencial e comercial." />
+  <meta property="og:type" content="website" />
+  <!-- Troque por imagem real (1200x630) depois -->
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=DGCLEAR" />
+
+  <style>
+    :root{
+      --bg0:#030914;
+      --bg1:#061a33;
+      --bg2:#050f22;
+
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+
+      --text:#eaf2ff;
+      --muted:#b7c6df;
+
+      --brand:#38BDF8;
+      --brand2:#60A5FA;
+      --wa1:#25D366;
+      --wa2:#22c55e;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.38);
+      --radius: 18px;
+      --max: 1120px;
+
+      --tap: 48px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica;
+      color:var(--text);
+      background: radial-gradient(900px 600px at 18% 8%, rgba(56,189,248,.22), transparent 62%),
+                  radial-gradient(900px 600px at 82% 10%, rgba(96,165,250,.18), transparent 64%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* ===============================
+       FUNDO FUTURISTA “ÁGUA / LIMPEZA”
+       =============================== */
+    .fx{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    /* grid sutil */
+    .grid{
+      position:absolute; inset:0;
+      opacity:.15;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,.25) 55%, transparent 80%);
+      animation: gridMove 18s linear infinite;
+    }
+    @keyframes gridMove{
+      from{ transform: translateY(0); }
+      to{ transform: translateY(46px); }
+    }
+
+    /* ondas/água (conic + blur) */
+    .water{
+      position:absolute;
+      width:780px; height:780px;
+      left:-220px; top:-220px;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity:.24;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(56,189,248,.75), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(96,165,250,.55), transparent 55%);
+      animation: float 11s ease-in-out infinite;
+    }
+    .water.b2{
+      width:720px; height:720px;
+      right:-260px; left:auto;
+      top:180px;
+      opacity:.20;
+      animation-duration: 13s;
+    }
+    @keyframes float{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(18px,28px) scale(1.05); }
+    }
+
+    /* bolhas */
+    .bubbles{
+      position:absolute; inset:0;
+      opacity:.25;
+      background:
+        radial-gradient(circle at 12% 70%, rgba(255,255,255,.22) 0 6px, transparent 7px),
+        radial-gradient(circle at 22% 35%, rgba(255,255,255,.14) 0 4px, transparent 5px),
+        radial-gradient(circle at 55% 78%, rgba(255,255,255,.18) 0 5px, transparent 6px),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,.12) 0 3px, transparent 4px),
+        radial-gradient(circle at 90% 25%, rgba(255,255,255,.16) 0 4px, transparent 5px);
+      animation: bubbleDrift 9s ease-in-out infinite;
+    }
+    @keyframes bubbleDrift{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-14px); }
+    }
+
+    /* ===============================
+       TOPBAR
+       =============================== */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(6,26,51,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 200px;
+    }
+    .logo{
+      width:44px; height:44px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      overflow:hidden;
+      box-shadow: 0 12px 40px rgba(56,189,248,.14);
+      position:relative;
+    }
+    .logo img{
+      width:100%; height:100%;
+      object-fit:cover; display:block;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-60%;
+      background: linear-gradient(120deg, transparent 45%, rgba(255,255,255,.25), transparent 55%);
+      transform: rotate(12deg);
+      animation: shine 2.8s ease-in-out infinite;
+      opacity:.6;
+    }
+    @keyframes shine{
+      0%{ transform: translateX(-36%) rotate(12deg); }
+      60%{ transform: translateX(36%) rotate(12deg); }
+      100%{ transform: translateX(36%) rotate(12deg); opacity:.18; }
+    }
+
+    .brand h1{
+      margin:0; font-size:14px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      line-height:1.1;
+    }
+    .brand p{
+      margin:0; font-size:12px;
+      color:var(--muted);
+      line-height:1.2;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height: var(--tap);
+      padding: 10px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:800;
+      font-size:14px;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+      white-space:nowrap;
+      will-change: transform;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(56,189,248,.95), rgba(96,165,250,.85));
+      border-color: rgba(255,255,255,.22);
+      color:#061127;
+      box-shadow: 0 16px 52px rgba(56,189,248,.22);
+      position:relative;
+      overflow:hidden;
+    }
+    .btn.primary::after{
+      content:"";
+      position:absolute; inset:-50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), transparent 60%);
+      opacity:.25;
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    @keyframes glow{
+      0%,100%{ transform: scale(.98); opacity:.18; }
+      50%{ transform: scale(1.06); opacity:.34; }
+    }
+
+    /* ===============================
+       LAYOUT (MOBILE FIRST)
+       =============================== */
+    .container{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 18px 14px 96px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 920px){
+      .hero{ grid-template-columns: 1.15fr .85fr; gap:18px; }
+    }
+
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* borda animada futurista */
+    .card.fx-border::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(from 180deg,
+        rgba(56,189,248,0),
+        rgba(56,189,248,.25),
+        rgba(96,165,250,0),
+        rgba(56,189,248,0)
+      );
+      filter: blur(14px);
+      opacity:.34;
+      animation: spin 9s linear infinite;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg); } }
+    .card > *{ position:relative; z-index:1; }
+
+    .inner{ padding: 18px; }
+    @media (min-width: 520px){
+      .inner{ padding: 22px; }
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.04em;
+      animation: pop .55s ease both;
+    }
+    .title{
+      margin: 12px 0 10px;
+      font-size: 34px;
+      line-height:1.05;
+      letter-spacing:-.02em;
+      animation: up .7s ease both;
+      animation-delay: .05s;
+    }
+    .subtitle{
+      margin: 0 0 16px;
+      color:var(--muted);
+      font-size: 15.5px;
+      line-height: 1.55;
+      max-width: 60ch;
+      animation: up .7s ease both;
+      animation-delay: .10s;
+    }
+    @media (min-width: 520px){
+      .title{ font-size: 40px; }
+      .subtitle{ font-size: 16px; }
+    }
+    @keyframes pop{ from{ transform: scale(.96); opacity:0; } to{ transform: scale(1); opacity:1; } }
+    @keyframes up{ from{ transform: translateY(10px); opacity:0; } to{ transform: translateY(0); opacity:1; } }
+
+    .cta{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 8px;
+      animation: up .7s ease both;
+      animation-delay: .16s;
+    }
+    @media (min-width: 520px){
+      .cta{ flex-direction:row; align-items:center; }
+    }
+
+    .pills{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 14px;
+      animation: up .7s ease both;
+      animation-delay: .22s;
+    }
+    @media (min-width: 920px){
+      .pills{ grid-template-columns: 1fr 1fr; }
+    }
+    .pill{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding:12px;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .pill:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .pill b{ display:block; font-size:13px; }
+    .pill span{ display:block; margin-top:6px; color:var(--muted); font-size:12px; line-height:1.35; }
+
+    /* Prova social com 1 imagem */
+    .proof{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .proof img{
+      width:100%;
+      height: 240px;
+      object-fit:cover;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+      transform: translateZ(0);
+      transition: transform .22s ease, filter .22s ease;
+    }
+    @media (min-width: 520px){
+      .proof img{ height: 300px; }
+    }
+    .proof img:hover{ transform: scale(1.02); filter: saturate(1.08) contrast(1.05); }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+    }
+
+    /* Serviços */
+    .section{ margin-top: 18px; }
+    .section h2{ margin:0 0 10px; font-size:20px; letter-spacing:-.01em; }
+    .section p{ margin:0 0 14px; color:var(--muted); line-height:1.6; }
+
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 920px){
+      .cards{ grid-template-columns: repeat(3,1fr); }
+    }
+    .service{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .service::after{
+      content:"";
+      position:absolute; inset:-45%;
+      background: radial-gradient(circle at 30% 30%, rgba(56,189,248,.18), transparent 60%);
+      opacity:0;
+      transition: opacity .16s ease;
+    }
+    .service:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .service:hover::after{ opacity:1; }
+    .service h3{ margin:0 0 8px; font-size:16px; }
+    .service p{ margin:0; color:var(--muted); font-size:14px; line-height:1.6; }
+
+    /* FAQ */
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding:14px 16px;
+      margin-bottom:10px;
+    }
+    summary{ cursor:pointer; font-weight:900; font-size:14px; }
+    details p{ margin:10px 0 0; color:var(--muted); font-size:14px; line-height:1.6; }
+
+    footer{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* WhatsApp flutuante */
+    .wa-float{
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 60;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      color:#05130a;
+      font-weight:950;
+      background: linear-gradient(135deg, var(--wa1), var(--wa2));
+      box-shadow: 0 18px 60px rgba(34,197,94,.35);
+      border: 1px solid rgba(255,255,255,.22);
+      transform-origin: right bottom;
+      animation: waPulse 1.7s ease-in-out infinite;
+    }
+    @keyframes waPulse{
+      0%,100%{ transform: translateY(0) scale(1); }
+      50%{ transform: translateY(-2px) scale(1.02); }
+    }
+    .wa-float:hover{ animation:none; transform: translateY(-2px) scale(1.02); }
+
+    .wa-float .bubble{
+      width:40px;height:40px;
+      border-radius:999px;
+      background: rgba(255,255,255,.20);
+      display:grid;
+      place-items:center;
+    }
+    .wa-float svg{ width:22px;height:22px; }
+    .wa-float small{ display:block; font-weight:950; opacity:.95; line-height:1.05; }
+    .wa-float span{ display:block; font-weight:850; font-size:12px; opacity:.92; line-height:1.1; }
+    @media (max-width: 420px){
+      .wa-float{ padding:10px 12px; }
+      .wa-float span{ display:none; }
+    }
+
+    /* Performance: evita animações pesadas se usuário pedir */
+    @media (prefers-reduced-motion: reduce){
+      .grid,.water,.bubbles,.logo::after,.card.fx-border::before,.btn.primary::after,.wa-float { animation:none; }
+      .btn,.pill,.service,.proof img { transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Fundo futurista -->
+  <div class="fx" aria-hidden="true">
+    <div class="grid"></div>
+    <div class="water b1"></div>
+    <div class="water b2"></div>
+    <div class="bubbles"></div>
+  </div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo">
+          <!-- Coloque 'logo.png' na mesma pasta -->
+          <img src="./ChatGPT Image 12 de jan. de 2026, 22_39_22.png" alt="Logo DGCLEAR" onerror="this.style.display='none';" />
+        </div>
+        <div>
+          <h1>DGCLEAR</h1>
+          <p>Limpeza e Instalação de Ar-Condicionado</p>
+        </div>
+      </div>
+
+      <a class="btn primary" id="ctaTop" href="#">Orçamento no WhatsApp</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <!-- Coluna principal -->
+      <div class="card fx-border">
+        <div class="inner">
+          <div class="kicker">Atendimento residencial e comercial</div>
+          <h2 class="title">Uma sensação de limpeza para o seu ambiente.</h2>
+          <p class="subtitle">
+            Serviço de <b>limpeza</b>, <b>instalação</b> e <b>manutenção</b> de ar-condicionado.
+            Chame no WhatsApp para solicitar orçamento e tirar dúvidas.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" id="ctaHero" href="#">💬 Chamar no WhatsApp</a>
+            <a class="btn" href="#servicos">Ver serviços</a>
+          </div>
+
+          <div class="pills">
+            <div class="pill">
+              <b>✅ Limpeza / Higienização</b>
+              <span>Remoção de sujeira acumulada e cuidado com o equipamento.</span>
+            </div>
+            <div class="pill">
+              <b>🧰 Instalação</b>
+              <span>Split/janela. Avaliação do local e orientação.</span>
+            </div>
+            <div class="pill">
+              <b>🛠️ Manutenção</b>
+              <span>Preventiva e corretiva conforme necessidade.</span>
+            </div>
+            <div class="pill">
+              <b>📍 Atendimento Local</b>
+              <span>Consulte sua região pelo WhatsApp.</span>
+            </div>
+          </div>
+
+          <p style="margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.6;">
+            *Valores e prazos variam conforme equipamento e local. Orçamento pelo WhatsApp.
+          </p>
+        </div>
+      </div>
+
+          <div class="proof">
+            <!-- Coloque 'prova.jpg' na mesma pasta -->
+            <img src="./ChatGPT Image 12 de jan. de 2026, 22_39_22.png" alt="Imagem de prova social (antes e depois / avaliação / serviço)" loading="lazy" />
+            <a class="btn primary" id="ctaProof" href="#">Quero um orçamento</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="servicos">
+      <h2>Serviços</h2>
+      <p>Escolha o serviço e fale no WhatsApp para orçamento e disponibilidade.</p>
+
+      <div class="cards">
+        <div class="service">
+          <h3>Limpeza / Higienização</h3>
+          <p>Limpeza interna e externa com foco em remover sujeiras acumuladas e melhorar a circulação de ar.</p>
+        </div>
+        <div class="service">
+          <h3>Instalação</h3>
+          <p>Instalação de ar-condicionado (split/janela) com avaliação do local e orientação.</p>
+        </div>
+        <div class="service">
+          <h3>Manutenção</h3>
+          <p>Manutenção preventiva e corretiva para identificar problemas comuns e manter o aparelho funcionando bem.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Perguntas frequentes</h2>
+      <p>Respostas rápidas para ajudar o cliente a decidir e clicar no WhatsApp.</p>
+
+      <details>
+        <summary>Como funciona o orçamento?</summary>
+        <p>Chame no WhatsApp, informe o modelo do aparelho e a localização. Quando necessário, orientamos com as informações para estimar o serviço.</p>
+      </details>
+
+      <details>
+        <summary>Vocês atendem residência e comércio?</summary>
+        <p>Sim. Atendemos conforme disponibilidade e região. Confirme pelo WhatsApp.</p>
+      </details>
+
+      <details>
+        <summary>Quanto tempo demora o serviço?</summary>
+        <p>Varia conforme o serviço e o equipamento. No WhatsApp, informamos uma estimativa após você enviar os detalhes.</p>
+      </details>
+
+      <footer>
+        <div><b>DGCLEAR</b> — Limpeza e Instalação de Ar-Condicionado</div>
+        <div>Contato: WhatsApp +55 21 96618-7167</div>
+        <div style="margin-top:6px">Aviso: informações gerais. Valores e prazos variam conforme equipamento e local.</div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Botão WhatsApp flutuante -->
+  <a class="wa-float" id="waFloat" href="#" aria-label="Chamar no WhatsApp">
+    <div class="bubble" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M19.2 17.6c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.7.7-.9.8-.2.1-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.9-.1-.3 0-.4.1-.6.1-.1.3-.3.4-.4.1-.1.2-.3.3-.4.1-.2 0-.4 0-.6 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.9 4.4 4.1.6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3Z" fill="#05130a"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.2.6 4.3 1.6 6.1L3 29l7.3-1.6c1.7.9 3.7 1.4 5.7 1.4 7.2 0 13-5.7 13-12.9C29 8.7 23.2 3 16 3Zm0 23.3c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.3.9.9-4.2-.2-.4c-1-1.5-1.5-3.3-1.5-5.2C5.5 9.9 10.3 5.3 16 5.3c5.7 0 10.5 4.6 10.5 10.4S21.7 26.3 16 26.3Z" fill="#05130a"/>
+      </svg>
+    </div>
+    <div>
+      <small>WhatsApp</small>
+      <span>Solicitar orçamento</span>
+    </div>
+  </a>
+
+  <script>
+    // WhatsApp: +55 21 96618-7167
+    const phone = "5521966187167";
+    const msg = "Olá! Vim pelo site e gostaria de um orçamento para limpeza/instalação de ar-condicionado.";
+    const wa = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+    ["ctaTop","ctaHero","ctaProof","waFloat"].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.href = wa;
+    });
+  </script>
+</body>
+</html>
