@@ -15,6 +15,25 @@
   <!-- Troque por imagem real (1200x630) depois -->
   <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=DGCLEAR" />
 
+  <!-- Meta Pixel Code (CORRETO: fica no HEAD) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4234134093569525');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4234134093569525&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     :root{
       --bg0:#030914;
@@ -76,7 +95,7 @@
       to{ transform: translateY(46px); }
     }
 
-    /* ondas/água (conic + blur) */
+    /* ondas/água (blur) */
     .water{
       position:absolute;
       width:780px; height:780px;
@@ -332,9 +351,6 @@
       animation: up .7s ease both;
       animation-delay: .22s;
     }
-    @media (min-width: 920px){
-      .pills{ grid-template-columns: 1fr 1fr; }
-    }
     .pill{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
@@ -484,7 +500,6 @@
       .wa-float span{ display:none; }
     }
 
-    /* Performance: evita animações pesadas se usuário pedir */
     @media (prefers-reduced-motion: reduce){
       .grid,.water,.bubbles,.logo::after,.card.fx-border::before,.btn.primary::after,.wa-float { animation:none; }
       .btn,.pill,.service,.proof img { transition:none; }
@@ -506,7 +521,7 @@
     <div class="wrap">
       <div class="brand">
         <div class="logo">
-          <!-- Coloque 'logo.png' na mesma pasta -->
+          <!-- RECOMENDADO: renomeie sua imagem para 'logo.png' e coloque na mesma pasta -->
           <img src="./ChatGPT Image 12 de jan. de 2026, 22_39_22.png" alt="Logo DGCLEAR" onerror="this.style.display='none';" />
         </div>
         <div>
@@ -561,9 +576,18 @@
         </div>
       </div>
 
+      <!-- Prova social (lado direito) -->
+      <aside class="card">
+        <div class="inner">
+          <span class="badge">🫧 Prova social / Antes e Depois</span>
+          <h3 style="margin:10px 0 8px;font-size:18px;">Resultados que o cliente vê</h3>
+          <p style="margin:0 0 12px;color:var(--muted);line-height:1.6;">
+            Use uma imagem de antes e depois, print de avaliação ou foto do serviço finalizado.
+          </p>
+
           <div class="proof">
-            <!-- Coloque 'prova.jpg' na mesma pasta -->
-            <img src="./ChatGPT Image 12 de jan. de 2026, 22_39_22.png" alt="Imagem de prova social (antes e depois / avaliação / serviço)" loading="lazy" />
+            <!-- RECOMENDADO: coloque uma imagem real e renomeie para 'prova.jpg' -->
+            <img src="./590413489_17876635941444884_7346505700956393135_n.jpg" alt="Imagem de prova social (antes e depois / avaliação / serviço)" loading="lazy" />
             <a class="btn primary" id="ctaProof" href="#">Quero um orçamento</a>
           </div>
         </div>
@@ -611,7 +635,7 @@
 
       <footer>
         <div><b>DGCLEAR</b> — Limpeza e Instalação de Ar-Condicionado</div>
-        <div>Contato: WhatsApp +55 21 96618-7167</div>
+        <div>Contato: WhatsApp +55 21 98144-0671</div>
         <div style="margin-top:6px">Aviso: informações gerais. Valores e prazos variam conforme equipamento e local.</div>
       </footer>
     </section>
@@ -632,7 +656,7 @@
   </a>
 
   <script>
-    // WhatsApp: +55 21 96618-7167
+    // WhatsApp: +55 21 98144-0671 (SEU NÚMERO)
     const phone = "5521981440671";
     const msg = "Olá! Vim pelo site e gostaria de um orçamento para limpeza/instalação de ar-condicionado.";
     const wa = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
@@ -642,22 +666,5 @@
       if(el) el.href = wa;
     });
   </script>
-  <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '4234134093569525');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=4234134093569525&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
 </body>
 </html>
