@@ -656,11 +656,22 @@
   </a>
 
   <script>
-    // WhatsApp: +55 21 98144-0671 (SEU NÚMERO)
+    // WhatsApp: +55 21 98144-0671
     const phone = "5521981440671";
-    const msg = "Olá! Vim pelo site e gostaria de um orçamento para limpeza/instalação de ar-condicionado.";
+  
+    const msg =
+  `Olá! Vim pelo anúncio no Facebook e acessei o site da DGCLEAR.
+  
+  Gostaria de um orçamento para:
+  • Limpeza
+  • Instalação
+  • Manutenção
+  
+  Bairro/Cidade:
+  Modelo do ar-condicionado:`;
+  
     const wa = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-
+  
     ["ctaTop","ctaHero","ctaProof","waFloat"].forEach(id=>{
       const el = document.getElementById(id);
       if(el) el.href = wa;
